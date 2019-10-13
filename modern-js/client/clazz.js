@@ -17,7 +17,7 @@ class Rectangle {
     }
 
     static areas(obj) {
-        return obj;
+        return obj.height * obj.width;
     }
 }
 
@@ -26,3 +26,4 @@ console.log(r.height, r.width);
 r.color = 'RED';
 console.log(r.color);
 console.log(r.area);
+console.log(Rectangle.areas(r));
