@@ -12,3 +12,20 @@ const sum2 = add(numbers[0], numbers[1], numbers[2]);
 console.log('2|', sum2);
 const sum3 = add(...numbers);
 console.log('2|', sum3);
+
+const arr = [7, 8, 9];
+const append = [7, 8, 9, ...arr];
+console.log(append);
+
+// spread object
+let obj1 = { foo: "bar", x: 42 };
+let obj2 = { foo: "baz", x: 43 };
+
+
+let cloneObject = {...obj1}; // new memory location
+
+
+
+
+
+
