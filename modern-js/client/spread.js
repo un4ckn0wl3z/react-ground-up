@@ -18,12 +18,12 @@ const append = [7, 8, 9, ...arr];
 console.log(append);
 
 // spread object
-let obj1 = { foo: "bar", x: 42 };
-let obj2 = { foo: "baz", x: 43 };
+let obj1 = { fooa: "bar", x: 42 };
+let obj2 = { foob: "baz", y: 43 };
 
 
-let cloneObject = {...obj1}; // new memory location
-
+let cloneObject = {...obj1, ...obj2}; // new memory location
+console.log('cloneObject ', cloneObject);
 
 
 
