@@ -22,15 +22,20 @@ let obj1 = { fooa: "bar", x: 42 };
 let obj2 = { foob: "baz", y: 43 };
 
 
-let cloneObject = {...obj1, ...obj2}; // new memory location
+let cloneObject = { ...obj1, ...obj2 }; // new memory location
 console.log('cloneObject ', cloneObject);
 
 
 // ----- spread object
 
-let {fooa, foob} = cloneObject;
+let { fooa, foob } = cloneObject;
 
 console.log(fooa, foob);
+
+// new props
+let { x: j, y: k } = cloneObject;
+console.log(j, k);
+
 
 
 
