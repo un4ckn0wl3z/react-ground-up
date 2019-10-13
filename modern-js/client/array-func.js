@@ -37,3 +37,15 @@ let vegats = ['Radish', 'Carrot', 'Turnip'];
 console.log(vegats);
 vegats.splice(1, 2);
 console.log(vegats);
+
+// copy
+
+let copy = fruit.slice();
+console.log(copy);
+
+// map
+let arr1 = [1, 2, 3, 4, 6, 5];
+const map1 = arr1.map((x) => {
+    return x * 2;
+});
+console.log(map1);
