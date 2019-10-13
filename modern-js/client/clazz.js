@@ -5,4 +5,4 @@ class Rectangle {
     }
 }
 
-const r = new Rectangle();
+const r = new Rectangle(100, 200);
