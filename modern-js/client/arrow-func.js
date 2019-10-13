@@ -14,15 +14,15 @@ console.log(greet2('Anwuat', 'K.'));
 
 const person1 = {
     name: 'Anuwat',
-    handleMessage: function(message, handler){
+    handleMessage: (message, handler) => {
         handler(message);
     },
-    greet: function() {
-        this.handleMessage('Hi', function(message){
+    greet: () => {
+        this.handleMessage('Hi', (message) => {
             console.log(message, ' ', this.name);
         })
     }
 }
 
 
-person1.greet();
+person1.greet;
