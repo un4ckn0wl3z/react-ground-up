@@ -6,3 +6,4 @@ class Rectangle {
 }
 
 const r = new Rectangle(100, 200);
+console.log(r.height, r.width);
