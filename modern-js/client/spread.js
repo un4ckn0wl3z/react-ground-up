@@ -26,6 +26,11 @@ let cloneObject = {...obj1, ...obj2}; // new memory location
 console.log('cloneObject ', cloneObject);
 
 
+// ----- spread object
+
+let {fooa, foob} = cloneObject;
+
+console.log(fooa, foob);
 
 
 
