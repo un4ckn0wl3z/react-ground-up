@@ -6,3 +6,12 @@ if (true) {
 }
 
 console.log(name1);
+
+const fruit = "Banana";
+console.log(fruit);
+
+const person = {};
+person.name = "Anuwat";
+person.lastname = "K.";
+
+console.log(person);
