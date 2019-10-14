@@ -3,14 +3,16 @@ class Caculator extends Component {
 
 
     showOrders(orders) {
-        if (!orders || orders.length == 0) {
+        if (!orders || orders.length === 0) {
             return <li className="text-right text-muted title">ไม่มีสินค้าค่ะ</li>
         } else {
             return orders.map(order => {
                 return (
                     <li key={order.product.productId} className="text-right text-succes title">
                         {order.product.productName} x {order.quantity} = {order.quantity * order.product.unitPrice}
-                        <button className="btn btn-light btn-sm"> x </button>
+                        <button className="btn btn-light btn-sm" onClick={() => {
+                            this.props.onDeleteOrder(order.product);
+                        }}> x </button>
                     </li>
                 );
             })

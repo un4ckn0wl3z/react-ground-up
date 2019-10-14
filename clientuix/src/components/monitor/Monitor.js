@@ -11,14 +11,15 @@ class Monitor extends Component {
             orders: []
         }
         this.addOrder = this.addOrder.bind(this);
+        this.delOrder = this.delOrder.bind(this);
+
     }
 
-
-    addOrder(product){
-        let findOrder = this.state.orders.find( order => order.product.productId == product.productId);
-        if(findOrder){
+    addOrder(product) {
+        let findOrder = this.state.orders.find(order => order.product.productId === product.productId);
+        if (findOrder) {
             findOrder.quantity++;
-        }else{
+        } else {
             this.state.orders.push({
                 product: product,
                 quantity: 1
@@ -27,9 +28,20 @@ class Monitor extends Component {
         const totalPrice = this.state.totalPrice + parseInt(product.unitPrice);
         this.setState({
             totalPrice: totalPrice,
-            order: this.state.orders
+            orders: this.state.orders
         });
+        console.log(this.state.orders)
+    }
 
+    delOrder(product) {
+        let findOrder = this.state.orders.find(order => order.product.productId === product.productId);
+        let resultOrder = this.state.orders.filter(order => order.product.productId !== product.productId);
+        const totalPrice = this.state.totalPrice - (findOrder.quantity * parseInt(findOrder.product.unitPrice));
+        this.setState({
+            totalPrice: totalPrice,
+            orders: resultOrder
+        });
+        console.log(this.state.orders)
     }
 
     render() {
@@ -40,7 +52,7 @@ class Monitor extends Component {
                         <ProductList products={this.props.products} onAddOrder={this.addOrder} />
                     </div>
                     <div className="col-md-3">
-                        <Caculator totalPrice={this.state.totalPrice} orders={this.state.orders}/>
+                        <Caculator totalPrice={this.state.totalPrice} orders={this.state.orders} onDeleteOrder={this.delOrder} />
                     </div>
                 </div>
             </div>
