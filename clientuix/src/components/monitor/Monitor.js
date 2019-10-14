@@ -9,7 +9,9 @@ class Monitor extends Component {
         super(props);
         this.state = {
             totalPrice: 0,
-            orders: []
+            orders: [],
+            confirmed: false,
+            msg: ''
         }
         this.addOrder = this.addOrder.bind(this);
         this.delOrder = this.delOrder.bind(this);
@@ -31,7 +33,8 @@ class Monitor extends Component {
         const totalPrice = this.state.totalPrice + parseInt(product.unitPrice);
         this.setState({
             totalPrice: totalPrice,
-            orders: this.state.orders
+            orders: this.state.orders,
+            confirmed: false
         });
         console.log(this.state.orders)
     }
@@ -42,7 +45,8 @@ class Monitor extends Component {
         const totalPrice = this.state.totalPrice - (findOrder.quantity * parseInt(findOrder.product.unitPrice));
         this.setState({
             totalPrice: totalPrice,
-            orders: resultOrder
+            orders: resultOrder,
+            confirmed: false
         });
         console.log(this.state.orders)
     }
@@ -50,27 +54,41 @@ class Monitor extends Component {
     cancelOrder() {
         this.setState({
             totalPrice: 0,
-            orders: []
+            orders: [],
+            confirmed: false
         });
     }
 
     confirmOrder() {
         const { totalPrice, orders } = this.state;
-        axios.post('http://localhost:3001/orders', {
-            orderDate: new Date(),
-            totalPrice,
-            orders
-        }).then(res => {
-            this.setState({
-                totalPrice: 0,
-                orders: []
+        if (orders && orders.length > 0) {
+            axios.post('http://localhost:3001/orders', {
+                orderDate: new Date(),
+                totalPrice,
+                orders
+            }).then(res => {
+                this.setState({
+                    totalPrice: 0,
+                    orders: [],
+                    confirmed: true,
+                    msg: 'Your orders already confirmed.'
+                });
             });
-        });
+        } else {
+            this.setState({
+                confirmed: true,
+                msg: 'Please create your order.'
+            });
+        }
     }
 
     render() {
+        const { confirmed, msg } = this.state;
         return (
             <div className="container-fluid">
+                { confirmed &&
+                    <div className="alert alert-success title text-right" role="alert"> {msg}</div>
+                }
                 <div className="row">
                     <div className="col-md-9">
                         <ProductList products={this.props.products} onAddOrder={this.addOrder} />
